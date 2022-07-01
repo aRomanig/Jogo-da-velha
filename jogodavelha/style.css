@@ -1,0 +1,79 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    background-image: linear-gradient(to right, turquoise, rgb(80, 184, 106));
+}
+
+header h1 {
+    color: white;
+    margin: auto;
+    padding: 30px;
+    text-align: center;
+}
+
+main {
+    height: 60vh;
+    width: 60vh;
+    background-color: rgb(22, 16, 54);
+    border-radius: 20px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+}
+
+.cell {
+    width: 20vh;
+    height: 20vh;
+    border-radius: 5px;
+    display: flex;
+    border: 5px, solid, rgb(249, 248, 250);
+    /*background-color: grey;*/
+    line-height: 20vh;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.cell:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.output input:hover {
+    background-color: rgb(49, 45, 66);
+}
+
+.output {
+    text-align: center;
+    color: white;
+    padding-top: 30px;
+}
+
+.output input {
+    width: 200px;
+    height: 75px;
+    background-color: rgb(22, 16, 54);
+    color: white;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+footer {
+    margin: auto; 
+    color: white;
+    text-align: center;
+    margin: 30px;
+}
+
+footer a {
+    text-decoration: none;
+    font-weight: bold;
+}
