@@ -1,14 +1,17 @@
 let contador = 0
-const cell1 = document.getElementById('tl')
-const cell2 = document.getElementById('tc')
-const cell3 = document.getElementById('tr')
-const cell4 = document.getElementById('ml')
-const cell5 = document.getElementById('mc')
-const cell6 = document.getElementById('mr')
-const cell7 = document.getElementById('bl')
-const cell8 = document.getElementById('bc')
-const cell9 = document.getElementById('br')
+let gameRunning = true
+const cell1 = document.getElementById('1')
+const cell2 = document.getElementById('2')
+const cell3 = document.getElementById('3')
+const cell4 = document.getElementById('4')
+const cell5 = document.getElementById('5')
+const cell6 = document.getElementById('6')
+const cell7 = document.getElementById('7')
+const cell8 = document.getElementById('8')
+const cell9 = document.getElementById('9')
 const win = document.getElementById('gameOver')
+let openCells = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+
 
 function clicar(divId) {
     let div = document.getElementById(divId)
@@ -21,14 +24,23 @@ function clicar(divId) {
             div.innerHTML = '<h1>X</h1'
             contador = 1
             div.classList.add('X')
+            checkFinished()
+            let removeFromArray = openCells.indexOf(divId)
+            openCells.splice(removeFromArray, 1)
+            CPUplay()
         } else {
             div.innerHTML = '<h1>O</h1>'
             contador = 0
             div.classList.add('O')
+            checkFinished()
+            let removeFromArray = openCells.indexOf(divId)
+            openCells.splice(removeFromArray, 1)
+            CPUplay()
         }
     }
+}
 
-    //check if game is finished
+function checkFinished() {
     if (cell1.classList.contains('X') && cell2.classList.contains('X') && cell3.classList.contains('X')) {
         playerWon('X')
     } else if (cell1.classList.contains('O') && cell2.classList.contains('O') && cell3.classList.contains('O')) {
@@ -65,9 +77,28 @@ function clicar(divId) {
 }
 
 function playerWon(winner) {
-    win.innerHTML = `O jogador ${winner} venceu!`    
+    if (gameRunning) {
+        win.innerHTML = `O jogador ${winner} venceu!`
+        gameRunning = false
+    }  
 }
 
 function reiniciar() {
     document.location.reload()
+}
+
+function CPUplay() {
+    let cpuPlay = Math.floor(Math.random()*openCells.length)
+    div = document.getElementById(openCells[cpuPlay])
+    if (div != 'null') {
+        div.innerHTML = '<h1>O</h1>'
+        openCells.splice(cpuPlay, 1)
+        div.classList.add('O')
+    }
+    if (contador === 1) {
+        contador = 0
+    } else {
+        contador = 1 
+    }
+    checkFinished()
 }
